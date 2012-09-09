@@ -18,7 +18,7 @@ class Travis::Api::App
       #         "synced_at": "2012-08-14T22:11:21Z"
       #       }
       #     }
-      get('/', scope: :private) { body(user) }
+      # get('/', scope: :private) { body(user) }
 
       # TODO: Add implementation and documentation.
       post('/sync', scope: :private) { raise NotImplementedError }
