@@ -70,6 +70,7 @@ module Travis::Api
         use Rack::Deflater
         use Rack::PostBodyContentTypeParser
         use Rack::JSONP
+        use Rack::MethodOverride
 
         use Rack::Config do |env|
           env['travis.global_prefix'] = env['SCRIPT_NAME']

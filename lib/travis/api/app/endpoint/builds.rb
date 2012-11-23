@@ -10,6 +10,10 @@ class Travis::Api::App
       get '/:id' do
         respond_with service(:find_build, params)
       end
+
+      delete '/:id' do
+        respond_with service(:cancel_build, params)
+      end
     end
   end
 end

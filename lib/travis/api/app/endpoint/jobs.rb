@@ -10,6 +10,10 @@ class Travis::Api::App
       get '/:id' do
         respond_with service(:find_job, params)
       end
+
+      delete '/:id' do
+        respond_with service(:cancel_job, params)
+      end
     end
   end
 end
