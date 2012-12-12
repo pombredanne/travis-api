@@ -27,6 +27,7 @@ end
 group :development do
   gem 'foreman'
   gem 'rerun'
+  gem 'debugger'
 end
 
 group :development, :test do
