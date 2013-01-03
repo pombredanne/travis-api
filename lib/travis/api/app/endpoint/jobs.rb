@@ -10,6 +10,31 @@ class Travis::Api::App
       get '/:id' do
         respond_with service(:find_job, params)
       end
+
+      get '/:id/build.sh' do
+        if script = run_service(:build_script, id: params[:id])
+          body script
+          halt 200
+        else
+          halt 404
+        end
+      end
+
+      # TODO needs a proper scope and should probably run on a separate endpoint rather than api.travis-ci.*
+      post '/:id/logs' do
+        run_service(:logs_append, data: params.slice(*%w(id log number final)))
+        halt 202
+      end
+
+      # TODO where should this run, should travis-hub have an http endpoint?
+      #      should it just enqueue to rabbit for now? and sidekiq later?
+      # TODO needs a proper scope
+      # TODO add :error to Job and pass it down
+      # TODO should this be patch?
+      post '/:id/state' do
+        p params.slice(*%w(started_at finished_at state worker))
+        run_service(:update_job, event: params[:event], data: params.slice(*%w(started_at finished_at state worker)))
+      end
     end
   end
 end

@@ -1,4 +1,5 @@
 require 'travis'
+require 'travis/build'
 require 'backports'
 require 'rack'
 require 'rack/protection'
@@ -111,6 +112,8 @@ module Travis::Api
         Travis::Amqp.config = Travis.config.amqp
         Travis::Database.connect
         Travis::Features.start
+        Travis::Build::Services.register
+
         Sidekiq.configure_client do |config|
           config.redis = Travis.config.redis.merge(size: 1, namespace: Travis.config.sidekiq.namespace)
         end

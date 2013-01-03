@@ -5,6 +5,7 @@ gemspec
 
 gem 'travis-support',  github: 'travis-ci/travis-support'
 gem 'travis-core',     github: 'travis-ci/travis-core', branch: 'sf-log-aggregation'
+gem 'travis-build',    github: 'travis-ci/travis-build', branch: 'sf-compile-sh'
 gem 'travis-sidekiqs', github: 'travis-ci/travis-sidekiqs', require: nil, ref: 'cde9741'
 gem 'sinatra',         github: 'sinatra/sinatra'
 gem 'sinatra-contrib', github: 'sinatra/sinatra-contrib', require: nil
