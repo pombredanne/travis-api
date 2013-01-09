@@ -21,8 +21,10 @@ class Travis::Api::App
       end
 
       # TODO needs a proper scope and should probably run on a separate endpoint rather than api.travis-ci.*
-      post '/:id/logs' do
-        run_service(:logs_append, data: params.slice(*%w(id log number final)))
+      post '/:id/log' do
+        p params.slice(*%w(id number final))
+        puts params[:log]
+        # run_service(:logs_append, data: params.slice(*%w(id log number final)))
         halt 202
       end
 
@@ -32,8 +34,9 @@ class Travis::Api::App
       # TODO add :error to Job and pass it down
       # TODO should this be patch?
       post '/:id/state' do
-        p params.slice(*%w(started_at finished_at state worker))
-        run_service(:update_job, event: params[:event], data: params.slice(*%w(started_at finished_at state worker)))
+        p params.slice(*%w(started_at finished_at state worker error))
+        # run_service(:update_job, event: params[:event], data: params.slice(*%w(started_at finished_at state worker)))
+        halt 202
       end
     end
   end
