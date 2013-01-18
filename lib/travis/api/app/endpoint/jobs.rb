@@ -12,11 +12,13 @@ class Travis::Api::App
       end
 
       get '/:id/build.sh' do
-        if script = run_service(:build_script, id: params[:id])
-          body script
+        begin
+          p params
+          content_type :txt
+          body run_service(:build_script, id: params[:id])
           halt 200
-        else
-          halt 404
+        rescue Exception => e
+          puts e.message, e.backtrace
         end
       end
 
