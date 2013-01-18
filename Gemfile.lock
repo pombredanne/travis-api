@@ -66,14 +66,14 @@ GIT
 
 GIT
   remote: git://github.com/travis-ci/travis-build.git
-  revision: deb63a243748db2a54367d8de99628409948e551
+  revision: 2a2fd42d4c19de8ab0a63b45e6d77a8d5b681459
   branch: sf-compile-sh
   specs:
     travis-build (0.0.1)
 
 GIT
   remote: git://github.com/travis-ci/travis-core.git
-  revision: 3b4eb17f74fe5f03ca7f923d204ffdb18c7068e0
+  revision: 9270a169e44bb78385e4f4d9ffdce4f818722f72
   branch: sf-log-aggregation
   specs:
     travis-core (0.0.1)
