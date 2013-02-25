@@ -45,7 +45,8 @@ GIT
 
 GIT
   remote: git://github.com/travis-ci/travis-core.git
-  revision: 7970030f4bd44977d808d46ea1edd03d701aa439
+  revision: 01877ae02cb91e8bf0b70b9aa8301a5e30300c9d
+  branch: rm_add_de_locale
   specs:
     travis-core (0.0.1)
       actionmailer (~> 3.2.12)
@@ -220,7 +221,7 @@ GEM
       thor (>= 0.14.6, < 2.0)
     rake (0.9.6)
     rb-fsevent (0.9.3)
-    rdoc (3.12.1)
+    rdoc (3.12.2)
       json (~> 1.4)
     redcarpet (2.2.2)
     redis (3.0.2)
