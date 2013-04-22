@@ -17,7 +17,7 @@ GIT
 
 GIT
   remote: git://github.com/rkh/gh.git
-  revision: ac77e03b8fb70bec5cc4d218fe99d9348f614de9
+  revision: fe52554a5f56787a34d1d597109dd8f30e4bdef0
   branch: token-check
   specs:
     gh (0.10.2)
