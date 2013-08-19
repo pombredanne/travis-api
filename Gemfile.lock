@@ -31,7 +31,7 @@ GIT
 
 GIT
   remote: git://github.com/travis-ci/travis-core.git
-  revision: 029a4c6e9659006a7925685db4659dc7cd191dba
+  revision: 35f690bfb12bb0bef90297783e7c7ab15048dfc0
   specs:
     travis-core (0.0.1)
       actionmailer (~> 3.2.12)
@@ -266,7 +266,7 @@ GEM
     thor (0.14.6)
     tilt (1.4.1)
     timers (1.1.0)
-    treetop (1.4.14)
+    treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
     tzinfo (0.3.37)
