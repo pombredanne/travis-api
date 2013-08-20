@@ -8,7 +8,7 @@ class Travis::Api::App
     register Extensions::SmartConstants
 
     configure :production do
-      require 'newrelic_rpm'
+      require 'newrelic_rpm' if File.exists?('config/newrelic.yml')
     end
 
     error NotImplementedError do
