@@ -149,6 +149,7 @@ module Travis::Api
           end if Travis.config.sentry.dsn
 
           Travis::LogSubscriber::ActiveRecordMetrics.attach
+          Travis::Metrics.setup
           Travis::Notification.setup
         end
       end
