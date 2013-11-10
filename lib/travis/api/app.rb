@@ -1,4 +1,7 @@
 require 'travis'
+require 'travis/model'
+require 'travis/support/amqp'
+require 'travis/states_cache'
 require 'backports'
 require 'rack'
 require 'rack/protection'
@@ -34,6 +37,8 @@ module Travis::Api
     autoload :Cors,         'travis/api/app/cors'
 
     Rack.autoload :SSL, 'rack/ssl'
+
+    ERROR_RESPONSE = JSON.generate(error: 'Travis encountered an error, sorry :(')
 
     # Used to track if setup already ran.
     def self.setup?
@@ -117,7 +122,7 @@ module Travis::Api
       app.call(env)
     rescue
       if Endpoint.production?
-        [500, {'Content-Type' => 'application/json'}, ["{'error': 'Travis encountered an error, sorry :('}"]]
+        [500, {'Content-Type' => 'application/json'}, [ERROR_RESPONSE]]
       else
         raise
       end

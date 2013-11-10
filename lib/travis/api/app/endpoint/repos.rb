@@ -18,6 +18,14 @@ class Travis::Api::App
         end
       end
 
+      # Retrieves repositories for a given owner.
+      get '/:owner_name' do
+        pass if params[:owner_name] =~ /^\d+$/ # so we don't capture '/:id'
+        prefer_follower do
+          respond_with service(:find_repos, params)
+        end
+      end
+
       # Gets the repository with the given id.
       #
       # ### Response
@@ -48,6 +56,26 @@ class Travis::Api::App
 
       post '/:id/key' do
         respond_with service(:regenerate_repo_key, params), version: :v2
+      end
+
+      # Gets list of branches
+      get '/:repository_id/branches' do
+        respond_with service(:find_branches, params), type: :branches, version: :v2
+      end
+
+      # Gets lastest build on a branch branches
+      get '/:repository_id/branches/:branch' do
+        respond_with service(:find_branch, params), type: :branch, version: :v2
+      end
+
+      # List caches for a given repo. Can be filtered with `branch` and `match` query parameter.
+      get '/:repository_id/caches', scope: :private do
+        respond_with service(:find_caches, params), type: :caches, version: :v2
+      end
+
+      # Delete caches for a given repo. Can be filtered with `branch` and `match` query parameter.
+      delete '/:repository_id/caches', scope: :private do
+        respond_with service(:delete_caches, params), type: :caches, version: :v2
       end
 
       # Gets the repository with the given name.
@@ -100,6 +128,26 @@ class Travis::Api::App
 
       post '/:owner_name/:name/key' do
         respond_with service(:regenerate_repo_key, params), version: :v2
+      end
+
+      # Gets list of branches
+      get '/:owner_name/:name/branches' do
+        respond_with service(:find_branches, params), type: :branches, version: :v2
+      end
+
+      # Gets lastest build on a branch branches
+      get '/:owner_name/:name/branches/:branch' do
+        respond_with service(:find_branch, params), type: :branch, version: :v2
+      end
+
+      # List caches for a given repo. Can be filtered with `branch` and `match` query parameter.
+      get '/:owner_name/:name/caches', scope: :private do
+        respond_with service(:find_caches, params), type: :caches, version: :v2
+      end
+
+      # Delete caches for a given repo. Can be filtered with `branch` and `match` query parameter.
+      delete '/:owner_name/:name/caches', scope: :private do
+        respond_with service(:delete_caches, params), type: :caches, version: :v2
       end
     end
   end
